@@ -1,0 +1,15 @@
+source "https://rubygems.org"
+gem "sinatra", "~> 3.0"
+gem "sinatra-contrib", "~> 3.0"
+gem "sequel", "~> 5.100.0"
+gem 'sqlite3', '~> 2.0', '>= 2.0.2'
+gem "bcrypt", "~> 3.1"
+gem "sass-embedded"
+gem 'rack'
+gem 'rackup'
+gem 'rack-handlers'
+gem 'puma'
+gem 'sanitize'
+gem 'ostruct'
+gem 'logger'
+

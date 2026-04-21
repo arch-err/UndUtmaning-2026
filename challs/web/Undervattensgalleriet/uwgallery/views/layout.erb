@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= @title ? @title : "uwgallery" %></title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #2c3e50;
+            padding: 10px 16px;
+        }
+        .logo {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 10px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            background-color: #34495e;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: background-color 0.2s ease;
+        }
+        .nav-links a:hover {
+            background-color: #1abc9c;
+        }
+        .content {
+          padding: 20px;
+        }
+        .hero {
+          display: grid;
+          place-items: center;
+          height: 512px;
+          img {
+            width: 50%
+          }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="logo"><div class="soapBubble">
+    <div class="moveX">
+        <div class="moveY">
+            <div class="deformX">  
+                <div class="deformY">
+                    <div class ="bubbleImg"></div>
+                </div>  
+            </div>  
+        </div>
+    </div>
+</div></div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <% if @user %>
+              <a href="/galleries">My Galleries</a>
+              <a href="/new">New</a>
+              <a href="/logout"><%= "Log out #{@user}" %></a>
+            <% else %>
+              <a href="/login">Log in</a>
+            <% end %>
+        </div>
+    </div>
+
+    <%= yield %>
+
+</body>
+</html>
+

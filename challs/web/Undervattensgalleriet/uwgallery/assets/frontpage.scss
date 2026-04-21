@@ -1,0 +1,206 @@
+// based on https://codepen.io/sarazond/pen/LYGbwj
+
+@use 'sass:math';
+@use 'sass:string';
+
+// n is number of bubbles required
+@function multiple-box-shadow ($n) {
+  $value: '#{math.random(2000)}px #{math.random(2000)}px #FFF';
+  @for $i from 2 through $n {
+    $value: '#{$value} , #{math.random(2000)}px #{math.random(2000)}px rgba(173, 216, 230, 0.6)';
+  }
+
+  @return string.unquote($value);
+}
+
+$shadows-small:  multiple-box-shadow(700);
+$shadows-medium: multiple-box-shadow(200);
+$shadows-big:    multiple-box-shadow(100);
+
+html {
+  height: 100%;
+  background: radial-gradient(ellipse at bottom, #001A7A 0%, #000C38 100%);
+  overflow: hidden;
+};
+    
+#bubbles {
+  width: 4px;;
+  height: 4px;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: $shadows-small;
+  animation			: animBubbles 50s linear infinite;
+    
+  &:after {
+    content: " ";
+    position: absolute;
+    top: 2000px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: $shadows-small;
+  }
+}
+
+#bubbles2 {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: $shadows-medium;
+  animation			: animBubbles 100s linear infinite;
+    
+  &:after {
+    content: " ";
+    position: absolute;
+    top: 2000px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: $shadows-medium;
+  }
+}
+    
+#bubbles3 {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: $shadows-big;
+  animation			: animBubbles 150s linear infinite;
+    
+  &:after {
+    content: " ";
+    position: absolute;
+    top: 2000px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: $shadows-big;
+  }
+}
+
+#title {
+//  position: absolute;
+//  top: 50%;
+  width: 100%;
+  margin: 200px auto;
+  
+  color: #FFF;
+  text-align: center;
+  font-family: 'lato',sans-serif;
+  font-weight: 300;
+  font-size: 50px;
+  letter-spacing: 10px;
+  
+//  margin-top: -60px;
+  padding-left: 10px;
+  
+  span {
+    background: -webkit-linear-gradient(white, #38495a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+@keyframes animBubbles {
+  from	{
+    transform: translateY(0px);
+  }
+  to {		
+    transform: translateY(-2000px);
+  }
+}
+
+// https://codepen.io/Inrade/pen/gOZOJgg
+
+.soapBubble{
+position:relative;
+z-index: 1;
+width: 48px;
+height: 48px;
+outline: 0 solid rgba(0,0,0,.7) ;
+transition:1s;
+}
+.soapBubble div{
+position:absolute;
+height: 100%;
+width: 100%;
+}
+.bubbleImg{
+border-radius: 50%;
+border:3px solid rgba(255,255,255,.5);
+transition: 1s;
+background-image:
+    url("data:image/svg+xml;utf8, <svg width='100' height='100' xmlns='http://www.w3.org/2000/svg'><circle cx='50' cy='50' r='50' fill='none'/><circle cx='24' cy='24' r='7.5' fill='white' /><path d='M78 58.4999C69.5 72.4999 56 78.4999 53.5 80.9999C51 83.4999 50 89.9999 59.5 87.4999C69 84.9999 82.5 76.4999 86.5 67.4999C90.5 58.5 86.5 44.5 78 58.4999Z' fill='rgba(255,255,255,.9)' style='filter:blur(0px)'/></svg>"),
+    radial-gradient(circle at 70% 96%,white .5%, rgba(255,255,200,.4) 2%, transparent 9%) ,
+    radial-gradient( at 30% 20%,white 1%, rgba(255,255,200,1) 2%, transparent 20%,transparent 50%, rgba(0,200,200,.3) 73%,rgba(0,80,80,.3) 84% ),
+    radial-gradient(circle at 0% 0%,rgba(255,0,255,.7) 2%,transparent 80%);
+background-size: cover;
+}
+.moveX{
+animation-name: moveX;
+animation-duration: 2s;
+animation-timing-function: ease-in-out;
+animation-direction: alternate;
+animation-iteration-count: infinite;
+}
+@keyframes moveX{
+from{transform: translateX(-2px);}
+to{transform: translateX(2px);}
+}
+.moveY{
+animation-name: moveY;
+animation-duration: 1.4s;
+animation-timing-function: ease-in-out;
+animation-direction: alternate;
+animation-iteration-count: infinite;
+}
+@keyframes moveY {
+from{transform: translateY(-2px);}
+to{transform: translateY(2px);}
+}
+.deformX{
+animation-name: deformX;
+animation-duration: 4s;
+animation-timing-function: ease-in-out;
+animation-direction: alternate;
+animation-iteration-count: infinite;
+}
+@keyframes deformX {
+0%{transform: none;}
+25%{transform:scaleX(1.05) skewX(2deg)}
+50%{transform:none}
+75%{transform:scaleX(1.05)  skewX(-2deg)}
+100%{transform: none;}
+}
+.deformY{
+animation-name: deformY;
+animation-duration: 5s;
+animation-timing-function: ease-in-out;
+animation-direction: alternate;
+animation-iteration-count: infinite;
+}
+@keyframes deformY {
+0%{transform: none;}
+25%{transform:scaleY(1.05) skewY(2deg)}
+50%{transform:none}
+75%{transform:scaleY(1.05)  skewY(-2deg)}
+100%{transform: none;}
+}
+
+.box {
+  width: 40%;              
+  margin: 400px auto 0;
+  margin: 0 auto;          
+  padding: 20px;
+  background: #e6f2ff;    
+  border-radius: 12px;   
+}
+.row {
+  width: 100%;
+  font-size: 36px;
+}
